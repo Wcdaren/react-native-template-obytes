@@ -90,6 +90,14 @@ export default defineConfig([
     rules: {
       ...configs.recommended.rules,
       '@typescript-eslint/comma-dangle': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+      'react/no-unescaped-entities': 'off',
       '@typescript-eslint/consistent-type-imports': [
         'warn',
         {

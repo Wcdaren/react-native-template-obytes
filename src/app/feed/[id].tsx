@@ -2,12 +2,10 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 import * as React from 'react';
 
 import { usePost } from '@/api';
-import {
-  ActivityIndicator,
-  FocusAwareStatusBar,
-  Text,
-  View,
-} from '@/components/ui';
+import { FocusAwareStatusBar } from '@/components/focus-aware-status-bar';
+import { Box } from '@/components/ui/box';
+import { Spinner } from '@/components/ui/spinner';
+import { Text } from '@/components/ui/text';
 
 export default function Post() {
   const local = useLocalSearchParams<{ id: string }>();
@@ -19,29 +17,29 @@ export default function Post() {
 
   if (isPending) {
     return (
-      <View className="flex-1 justify-center  p-3">
+      <Box className="flex-1 justify-center p-3">
         <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
         <FocusAwareStatusBar />
-        <ActivityIndicator />
-      </View>
+        <Spinner />
+      </Box>
     );
   }
   if (isError) {
     return (
-      <View className="flex-1 justify-center p-3">
+      <Box className="flex-1 justify-center p-3">
         <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
         <FocusAwareStatusBar />
         <Text className="text-center">Error loading post</Text>
-      </View>
+      </Box>
     );
   }
 
   return (
-    <View className="flex-1 p-3 ">
+    <Box className="flex-1 p-3">
       <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
       <FocusAwareStatusBar />
       <Text className="text-xl">{data.title}</Text>
       <Text>{data.body} </Text>
-    </View>
+    </Box>
   );
 }

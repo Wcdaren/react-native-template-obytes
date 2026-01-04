@@ -1,32 +1,28 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Env } from '@env';
+import { Github, HeartHandshake } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
 
+import { FocusAwareStatusBar } from '@/components/focus-aware-status-bar';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ThemeItem } from '@/components/settings/theme-item';
-import {
-  colors,
-  FocusAwareStatusBar,
-  ScrollView,
-  Text,
-  View,
-} from '@/components/ui';
-import { Github, Rate, Share, Support, Website } from '@/components/ui/icons';
+import { GlobeIcon, Icon, ShareIcon, StarIcon } from '@/components/ui/icon';
+import { ScrollView } from '@/components/ui/scroll-view';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import { translate, useAuth } from '@/lib';
 
 export default function Settings() {
   const signOut = useAuth.use.signOut();
   const { colorScheme } = useColorScheme();
-  const iconColor =
-    colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
+  const iconColor = colorScheme === 'dark' ? '#a3a3a3' : '#737373';
   return (
     <>
       <FocusAwareStatusBar />
 
       <ScrollView>
-        <View className="flex-1 px-4 pt-16 ">
+        <VStack className="flex-1 px-4 pt-16">
           <Text className="text-xl font-bold">
             {translate('settings.title')}
           </Text>
@@ -43,17 +39,17 @@ export default function Settings() {
           <ItemsContainer title="settings.support_us">
             <Item
               text="settings.share"
-              icon={<Share color={iconColor} />}
+              icon={<Icon as={ShareIcon} style={{ color: iconColor }} />}
               onPress={() => {}}
             />
             <Item
               text="settings.rate"
-              icon={<Rate color={iconColor} />}
+              icon={<Icon as={StarIcon} style={{ color: iconColor }} />}
               onPress={() => {}}
             />
             <Item
               text="settings.support"
-              icon={<Support color={iconColor} />}
+              icon={<Icon as={HeartHandshake} style={{ color: iconColor }} />}
               onPress={() => {}}
             />
           </ItemsContainer>
@@ -63,22 +59,22 @@ export default function Settings() {
             <Item text="settings.terms" onPress={() => {}} />
             <Item
               text="settings.github"
-              icon={<Github color={iconColor} />}
+              icon={<Icon as={Github} style={{ color: iconColor }} />}
               onPress={() => {}}
             />
             <Item
               text="settings.website"
-              icon={<Website color={iconColor} />}
+              icon={<Icon as={GlobeIcon} style={{ color: iconColor }} />}
               onPress={() => {}}
             />
           </ItemsContainer>
 
-          <View className="my-8">
+          <VStack className="my-8">
             <ItemsContainer>
               <Item text="settings.logout" onPress={signOut} />
             </ItemsContainer>
-          </View>
-        </View>
+          </VStack>
+        </VStack>
       </ScrollView>
     </>
   );

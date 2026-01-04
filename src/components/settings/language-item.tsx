@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import type { OptionType } from '@/components/ui';
-import { Options, useModal } from '@/components/ui';
-import { useSelectedLanguage } from '@/lib';
-import { translate } from '@/lib';
+import type { OptionType } from '@/components/options';
+import { Options, useModal } from '@/components/options';
+import { translate, useSelectedLanguage } from '@/lib';
 import type { Language } from '@/lib/i18n/resources';
 
 import { Item } from './item';
@@ -40,10 +39,11 @@ export const LanguageItem = () => {
         onPress={modal.present}
       />
       <Options
-        ref={modal.ref}
         options={langs}
         onSelect={onSelect}
         value={selectedLanguage?.value}
+        isOpen={modal.isOpen}
+        onClose={modal.dismiss}
       />
     </>
   );

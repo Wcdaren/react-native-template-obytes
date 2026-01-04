@@ -4,7 +4,10 @@ import React from 'react';
 import type { Post } from '@/api';
 import { usePosts } from '@/api';
 import { Card } from '@/components/card';
-import { EmptyList, FocusAwareStatusBar, Text, View } from '@/components/ui';
+import { EmptyList } from '@/components/empty-list';
+import { FocusAwareStatusBar } from '@/components/focus-aware-status-bar';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
 
 export default function Feed() {
   const { data, isPending, isError } = usePosts();
@@ -15,13 +18,13 @@ export default function Feed() {
 
   if (isError) {
     return (
-      <View>
+      <Box>
         <Text> Error Loading data </Text>
-      </View>
+      </Box>
     );
   }
   return (
-    <View className="flex-1 ">
+    <Box className="flex-1">
       <FocusAwareStatusBar />
       <FlashList
         data={data}
@@ -30,6 +33,6 @@ export default function Feed() {
         ListEmptyComponent={<EmptyList isLoading={isPending} />}
         estimatedItemSize={300}
       />
-    </View>
+    </Box>
   );
 }

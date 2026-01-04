@@ -1,9 +1,9 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 
+import { FocusAwareStatusBar } from '@/components/focus-aware-status-bar';
 import type { LoginFormProps } from '@/components/login-form';
 import { LoginForm } from '@/components/login-form';
-import { FocusAwareStatusBar } from '@/components/ui';
 import { useAuth } from '@/lib';
 
 export default function Login() {

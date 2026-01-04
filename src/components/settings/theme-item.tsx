@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { OptionType } from '@/components/ui';
-import { Options, useModal } from '@/components/ui';
+import type { OptionType } from '@/components/options';
+import { Options, useModal } from '@/components/options';
 import type { ColorSchemeType } from '@/lib';
 import { translate, useSelectedTheme } from '@/lib';
 
@@ -41,10 +41,11 @@ export const ThemeItem = () => {
         onPress={modal.present}
       />
       <Options
-        ref={modal.ref}
         options={themes}
         onSelect={onSelect}
         value={theme?.value}
+        isOpen={modal.isOpen}
+        onClose={modal.dismiss}
       />
     </>
   );

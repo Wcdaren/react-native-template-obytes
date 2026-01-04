@@ -5,7 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@env": ["./src/lib/env.js"]
+      "@env": ["./src/lib/env.js"],
+      "tailwind.config": ["./tailwind.config.js"]
     },
     "esModuleInterop": true,
     "checkJs": true
@@ -18,7 +19,8 @@
     "cli",
     "android",
     "ios",
-    "lint-staged.config.js"
+    "lint-staged.config.js",
+    "src/components/ui"
   ],
   "include": [
     "**/*.ts",

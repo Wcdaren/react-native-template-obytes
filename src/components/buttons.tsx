@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Button, View } from '@/components/ui';
+import { Button, ButtonSpinner, ButtonText } from '@/components/ui/button';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
 
 import { Title } from './title';
 
@@ -8,45 +10,60 @@ export const Buttons = () => {
   return (
     <>
       <Title text="Buttons" />
-      <View>
-        <View className="flex-row  flex-wrap">
-          <Button label="small" size="sm" className="mr-2" />
-          <Button
-            label="small"
-            loading
-            size="sm"
-            className="mr-2 min-w-[60px]"
-          />
-          <Button
-            label="small"
-            size="sm"
-            variant="secondary"
-            className="mr-2"
-          />
-          <Button label="small" size="sm" variant="outline" className="mr-2" />
-          <Button
-            label="small"
-            size="sm"
-            variant="destructive"
-            className="mr-2"
-          />
-          <Button label="small" size="sm" variant="ghost" className="mr-2" />
-          <Button label="small" size="sm" disabled className="mr-2" />
-        </View>
-        <Button label="Default Button" />
-        <Button label="Secondary Button" variant="secondary" />
-        <Button label="Outline Button" variant="outline" />
-        <Button label="Destructive Button" variant="destructive" />
-        <Button label="Ghost Button" variant="ghost" />
-        <Button label="Button" loading={true} />
-        <Button label="Button" loading={true} variant="outline" />
-        <Button label="Default Button Disabled" disabled />
-        <Button
-          label="Secondary Button Disabled"
-          disabled
-          variant="secondary"
-        />
-      </View>
+      <VStack>
+        <HStack className="flex-wrap">
+          <Button size="sm" className="mr-2">
+            <ButtonText>small</ButtonText>
+          </Button>
+          <Button size="sm" className="mr-2 min-w-[60px]">
+            <ButtonSpinner />
+          </Button>
+          <Button size="sm" action="secondary" className="mr-2">
+            <ButtonText>small</ButtonText>
+          </Button>
+          <Button size="sm" variant="outline" className="mr-2">
+            <ButtonText>small</ButtonText>
+          </Button>
+          <Button size="sm" action="negative" className="mr-2">
+            <ButtonText>small</ButtonText>
+          </Button>
+          <Button size="sm" action="default" className="mr-2">
+            <ButtonText>small</ButtonText>
+          </Button>
+          <Button size="sm" isDisabled className="mr-2">
+            <ButtonText>small</ButtonText>
+          </Button>
+        </HStack>
+        <Button>
+          <ButtonText>Default Button</ButtonText>
+        </Button>
+        <Button action="secondary">
+          <ButtonText>Secondary Button</ButtonText>
+        </Button>
+        <Button variant="outline">
+          <ButtonText>Outline Button</ButtonText>
+        </Button>
+        <Button action="negative">
+          <ButtonText>Destructive Button</ButtonText>
+        </Button>
+        <Button action="default">
+          <ButtonText>Ghost Button</ButtonText>
+        </Button>
+        <Button>
+          <ButtonSpinner />
+          <ButtonText>Button</ButtonText>
+        </Button>
+        <Button variant="outline">
+          <ButtonSpinner />
+          <ButtonText>Button</ButtonText>
+        </Button>
+        <Button isDisabled>
+          <ButtonText>Default Button Disabled</ButtonText>
+        </Button>
+        <Button isDisabled action="secondary">
+          <ButtonText>Secondary Button Disabled</ButtonText>
+        </Button>
+      </VStack>
     </>
   );
 };

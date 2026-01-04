@@ -2,24 +2,23 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 
 import { Cover } from '@/components/cover';
-import {
-  Button,
-  FocusAwareStatusBar,
-  SafeAreaView,
-  Text,
-  View,
-} from '@/components/ui';
+import { FocusAwareStatusBar } from '@/components/focus-aware-status-bar';
+import { Button, ButtonText } from '@/components/ui/button';
+import { SafeAreaView } from '@/components/ui/safe-area-view';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import { useIsFirstTime } from '@/lib/hooks';
+
 export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
   const router = useRouter();
   return (
-    <View className="flex h-full items-center  justify-center">
+    <VStack className="flex h-full items-center justify-center">
       <FocusAwareStatusBar />
-      <View className="w-full flex-1">
+      <VStack className="w-full flex-1">
         <Cover />
-      </View>
-      <View className="justify-end ">
+      </VStack>
+      <VStack className="justify-end">
         <Text className="my-3 text-center text-5xl font-bold">
           Obytes Starter
         </Text>
@@ -39,16 +38,17 @@ export default function Onboarding() {
         <Text className="my-1 text-left text-lg">
           💪 well maintained third-party libraries
         </Text>
-      </View>
+      </VStack>
       <SafeAreaView className="mt-6">
         <Button
-          label="Let's Get Started "
           onPress={() => {
             setIsFirstTime(false);
             router.replace('/login');
           }}
-        />
+        >
+          <ButtonText>Let's Get Started</ButtonText>
+        </Button>
       </SafeAreaView>
-    </View>
+    </VStack>
   );
 }

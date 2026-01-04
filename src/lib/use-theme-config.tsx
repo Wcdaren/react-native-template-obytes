@@ -5,17 +5,19 @@ import {
 } from '@react-navigation/native';
 import { useColorScheme } from 'nativewind';
 
-import colors from '@/components/ui/colors';
+// Colors match gluestack-ui config.ts CSS variables
+// Dark theme uses --color-background-* and --color-typography-* from dark mode
+// Light theme uses default React Navigation colors (matches gluestack light mode)
 
 const DarkTheme: Theme = {
   ..._DarkTheme,
   colors: {
     ..._DarkTheme.colors,
-    primary: colors.primary[200],
-    background: colors.charcoal[950],
-    text: colors.charcoal[100],
-    border: colors.charcoal[500],
-    card: colors.charcoal[850],
+    primary: '#bababa', // --color-primary-100: 186 186 186
+    background: '#121212', // --color-background-0: 18 18 18
+    text: '#e5e5e5', // --color-typography-800: 229 229 229
+    border: '#747474', // --color-outline-300: 115 116 116
+    card: '#272625', // --color-background-50: 39 38 37
   },
 };
 
@@ -23,15 +25,12 @@ const LightTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: colors.primary[400],
-    background: colors.white,
+    primary: '#333333', // --color-primary-500: 51 51 51
+    background: '#ffffff', // --color-background-0: 255 255 255
   },
 };
 
 export function useThemeConfig() {
   const { colorScheme } = useColorScheme();
-
-  if (colorScheme === 'dark') return DarkTheme;
-
-  return LightTheme;
+  return colorScheme === 'dark' ? DarkTheme : LightTheme;
 }

@@ -5,7 +5,10 @@ import { useForm } from 'react-hook-form';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
-import { Button, ControlledInput, Text, View } from '@/components/ui';
+import { ControlledInput } from '@/components/controlled-input';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 
 const schema = z.object({
   name: z.string().optional(),
@@ -37,8 +40,8 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
       behavior="padding"
       keyboardVerticalOffset={10}
     >
-      <View className="flex-1 justify-center p-4">
-        <View className="items-center justify-center">
+      <VStack className="flex-1 justify-center p-4">
+        <VStack className="items-center justify-center">
           <Text
             testID="form-title"
             className="pb-6 text-center text-4xl font-bold"
@@ -50,7 +53,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
             Welcome! 👋 This is a demo login screen! Feel free to use any email
             and password to sign in and try it out.
           </Text>
-        </View>
+        </VStack>
 
         <ControlledInput
           testID="name"
@@ -73,12 +76,10 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
           placeholder="***"
           secureTextEntry={true}
         />
-        <Button
-          testID="login-button"
-          label="Login"
-          onPress={handleSubmit(onSubmit)}
-        />
-      </View>
+        <Button testID="login-button" onPress={handleSubmit(onSubmit)}>
+          <ButtonText>Login</ButtonText>
+        </Button>
+      </VStack>
     </KeyboardAvoidingView>
   );
 };
